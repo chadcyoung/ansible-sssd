@@ -1,0 +1,17 @@
+
+- name: Copy cert to /etc/openldap/cacerts
+  become: yes
+  become_method: sudo
+  #command: cp /etc/openldap/cacerts/root_cert.pem /etc/openldap/cacerts/root_cert.pem.{{ date }}
+  template: src=root_cert.pem.j2 dest=/etc/openldap/cacerts/root_cert.pem
+
+- name: Get the hash
+  become: yes
+  become_method: sudo
+  command: openssl x509 -noout -hash -in /etc/openldap/cacerts/root_cert.pem
+  register: hash
+
+- name: Set up link
+  become: yes
+  become_method: sudo 
+  command: ln -s /etc/openldap/cacerts/root_cert.pem /etc/openldap/cacerts/{{ hash.stdout }}.0

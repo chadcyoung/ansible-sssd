@@ -1,0 +1,80 @@
+[sssd]
+config_file_version = 2
+domains = ccdev.clubcorp.net
+services = nss, pam
+debug_level = 5
+
+[nss]
+
+[pam]
+
+[domain/CCDEV.CLUBCORP.NET]
+# Unless you know you need referrals, turn them off
+ldap_referrals = false
+# Uncomment if you need offline logins
+# cache_credentials = true
+enumerate = false
+
+id_provider = ldap
+auth_provider = krb5
+chpass_provider = krb5
+access_provider = ldap
+
+# Uncomment if service discovery is not working
+ldap_uri = ldaps://dc2msdct10.ccdev.clubcorp.net/
+
+# Comment out if not using SASL/GSSAPI to bind
+#ldap_sasl_mech = GSSAPI
+# Uncomment and adjust if the default principal host/fqdn@REALM is not available
+#ldap_sasl_authid = nfs/client.ad.example.com@AD.EXAMPLE.COM
+
+# Define these only if anonymous binds are not allowed and no keytab is available
+# Enabling use_start_tls is very important, otherwise the bind password is transmitted
+# over the network in the clear
+ldap_id_use_start_tls = True
+ldap_tls_cacert = /etc/openldap/cacerts/9b0f491a.0 
+ldap_default_bind_dn = CN=svc_sssd-auth,OU=Service Accounts,OU=IT,DC=ccdev,DC=clubcorp,DC=net
+dap_default_authtok_type = password
+ldap_default_authtok = Password123
+
+ldap_schema = rfc2307bis
+
+ldap_user_search_base = dc=ccdev,dc=clubcorp,dc=net
+ldap_user_object_class = user
+ldap_user_home_directory = unixHomeDirectory
+ldap_user_principal = userPrincipalName
+ldap_group_search_base = dc=ccdev,dc=clubcorp,dc=net
+ldap_group_object_class = group
+ldap_access_order = expire
+ldap_account_expire_policy = ad
+ldap_force_upper_case_realm = true
+
+# Perhaps you need to redirect to certain attributes?
+# ldap_user_object_class = user
+# ldap_user_name = sAMAccountName
+# ldap_user_uid_number = msSFU30UidNumber
+# ldap_user_gid_number = msSFU30GidNumber
+# ldap_user_gecos = displayName
+# ldap_user_home_directory = msSFU30HomeDirectory
+# ldap_user_shell = msSFU30LoginShell
+# ldap_user_principal = userPrincipalName
+# ldap_group_object_class = group
+# ldap_group_name = cn
+# ldap_group_gid_number = msSFU30GidNumber
+
+
+###ldap_id_mapping=true
+
+
+# Uncomment if dns discovery of your AD servers isn't working.
+krb5_server = dc2msdct10.ccdev.clubcorp.net:88,dc2msdct20.ccdev.clubcorp.net:88
+krb5_realm = CCDEV.CLUBCORP.NET
+
+# Default is 15 Seconds
+krb5_auth_timeout = 30
+
+krb5_keytab = /etc/krb5.keytab
+
+# Probably required with sssd 1.8.x and newer
+krb5_canonicalize = false
+

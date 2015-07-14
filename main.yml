@@ -1,0 +1,22 @@
+---
+
+- hosts: testServers
+  #remote_user: chyoung
+  #vars_files:
+  #  - secret
+  become: yes
+  become_method: sudo
+  vars:
+    date: 20150702
+  tasks: 
+  - include: test.yml
+  #- include: tasks/resolv.yml
+  #- include: tasks/samba.yml
+  #- include: tasks/kerb.yml
+  #- include: tasks/pam.yml
+  #- include: tasks/nss.yml
+  #- include: tasks/sssd.yml
+  #- include: tasks/cert.yml
+  #- include: tasks/sudo.yml
+  handlers:
+     - include: handlers/main.yml

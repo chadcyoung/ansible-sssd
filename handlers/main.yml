@@ -1,0 +1,6 @@
+---
+- name: restart samba
+  command: sudo /sbin/service smb restart
+
+- name: restart sssd
+  command: sudo /sbin/service sssd restart

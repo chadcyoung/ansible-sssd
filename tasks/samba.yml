@@ -1,0 +1,9 @@
+- name: Make copy of Samba conf file
+  command: cp /etc/samba/smb.conf /etc/samba/smb.conf.{{ date }}
+
+- name: Add new Sambe conf file and restart samba
+  template: src=smb.conf.j2 dest=/etc/samba/smb.conf
+
+- name: Check config on for samba
+  command: /sbin/chkconfig smb on
+  notify: restart samba

@@ -1,0 +1,4 @@
+- name: Make copy of resolv conf file
+  command: cp /etc/resolv.conf /etc/resolv.conf.{{ date }}
+- name: Add new resolv conf file
+  template: src=resolv.conf.j2 dest=/etc/resolv.conf

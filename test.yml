@@ -1,0 +1,6 @@
+
+  - name: Test
+    become: yes
+    become_method: sudo
+    command: cp /etc/resolv.conf /etc/resolv.conf.{{ date }}
+#    command: cp /etc/resolv.conf /etc/resolv.conf.1111

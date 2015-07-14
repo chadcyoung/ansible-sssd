@@ -1,0 +1,4 @@
+- name: Make copy of current pam.d/system-auth
+  command: cp /etc/pam.d/system-auth /etc/pam.d/system-auth.{{ date }}
+- name: Add new pam.d/system-auth file
+  template: src=system-auth.j2 dest=/etc/pam.d/system-auth
