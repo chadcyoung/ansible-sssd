@@ -13,7 +13,9 @@
 					sudo cp /etc/pam.d/system-auth ~/ansibleconffiles/ &&
 					sudo chmod 777 ~/ansibleconffiles/sssd.conf'
 	scp -r chyoung@dc2rh028tst.clubcorp.com:~/ansibleconffiles /etc/ansible/
+	
 
-
-
+	find /etc/ansible/ansibleconffiles/* -type f -exec mv '{}' '{}'.j2 \;
+	mv /etc/ansible/ansibleconffiles/* /etc/ansible/
+	sudo rm -r ansibleconffiles
 
