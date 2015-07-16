@@ -2,4 +2,4 @@
   command: cp /etc/nsswitch.conf /etc/nsswitch.conf.{{ date }}
   
 - name: Add new NSS conf file
-  template: src=nsswitch.conf.j2 dest=/etc/nsswitch.conf
+  template: src=/etc/ansible/confFiles/nsswitch.conf.j2 dest=/etc/nsswitch.conf

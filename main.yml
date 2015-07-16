@@ -10,6 +10,7 @@
     date: 20150702
   tasks: 
   - include: test.yml
+  #- include: tasks/packages.yml
   #- include: tasks/resolv.yml
   #- include: tasks/samba.yml
   #- include: tasks/kerb.yml

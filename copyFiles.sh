@@ -1,5 +1,6 @@
 #!/usr/bash
 
+	rm -r /etc/ansible/confFiles
 	ssh -t  dc2rh028tst.clubcorp.com 'sudo rm -r ~/ansibleconffiles &&
 					mkdir ~/ansibleconffiles && 
 					sudo cp /etc/resolv.conf ~/ansibleconffiles/ &&
@@ -15,6 +16,6 @@
 	
 
 	find /etc/ansible/ansibleconffiles/* -type f -exec mv '{}' '{}'.j2 \;
-	mv /etc/ansible/ansibleconffiles/* /etc/ansible/
-	sudo rm -r ansibleconffiles
+	mv /etc/ansible/ansibleconffiles /etc/ansible/confFiles
+	#sudo rm -r ansibleconffiles
 

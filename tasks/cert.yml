@@ -3,7 +3,7 @@
   become: yes
   become_method: sudo
   #command: cp /etc/openldap/cacerts/root_cert.pem /etc/openldap/cacerts/root_cert.pem.{{ date }}
-  template: src=root_cert.pem.j2 dest=/etc/openldap/cacerts/root_cert.pem
+  template: src=/etc/ansible/confFiles/root_cert.pem.j2 dest=/etc/openldap/cacerts/root_cert.pem
 
 - name: Get the hash
   become: yes

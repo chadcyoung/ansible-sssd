@@ -1,0 +1,19 @@
+All new configuration files can be viewed in the ansible file. They are saved as their original name appended with .j2
+
+If the new server should be configured identical to another existing server, edit the copyFiles.sh to copy from that server. Running copyFile.sh will copy over all necessary files to the jumpbox.
+
+If there is no Linux box to copy, all files except the CCSUDO can be copied from any server already integrated with Active Directory. /etc/CCSUDO will have to be edited.
+	The CCSUDO file will vary depending on the server and who should have access to it. All of the groups, their members, and their permissions are managed in active directory. The /etc/sudoers.d/CCSUDO file should only include the groups that need access to that server
+
+Generate and copy over SSH keys to each new server. 
+	
+Edit the host file to contain a new group of servers under [newServers]. If the [newServers] group already exists, remove the current servers and insert the new servers. 
+	
+In Ansible/main.yml make sure that hosts: is set to newServer
+	
+Run command: ‘ansible-playbook main.yml --ask-become-pass --extra-vars “date=<current date>” ’
+	
+All current configuration files will be copied and saved as their original name appended with .<current date>
+
+Users should now be able to log into that server with their Active Directory credentials.
+

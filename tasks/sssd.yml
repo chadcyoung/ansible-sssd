@@ -1,18 +1,9 @@
 
-- name: Install SSSD
-  yum: pkg={{ item }} state=present
-  with_items:
-        - sssd
-        - sssd-tools
-        - samba
-        - oddjob
-        - oddjob-mkhomedir
-
 - name: Make copy of sssd conf file 
   command: cp /etc/sssd/sssd.conf /etc/sssd/sssd.conf.{{ date }}
 
 - name: Add new sssd conf file
-  template: src=sssd.conf dest=/etc/sssd/sssd.conf
+  template: src=/etc/ansible/confFiles/sssd.conf dest=/etc/sssd/sssd.conf
                 owner=root group=root mode=0600
 - name: Restorecon sssd.conf
   command: sudo /sbin/restorecon /etc/sssd/sssd.conf
