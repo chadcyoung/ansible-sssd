@@ -12,4 +12,4 @@
   command: sudo net ads -U svc_sssd-auth keytab create
 
 - name: Join client to domain
-  command: sudo net ads join -U svc_sssd-auth  #Prod servers need to specific OU's
+  command: sudo net ads join -U svc_sssd-auth  #Prod servers need specific OU's

@@ -5,6 +5,7 @@
 - name: Add new sssd conf file
   template: src=/etc/ansible/confFiles/sssd.conf dest=/etc/sssd/sssd.conf
                 owner=root group=root mode=0600
+
 - name: Restorecon sssd.conf
   command: sudo /sbin/restorecon /etc/sssd/sssd.conf
 
