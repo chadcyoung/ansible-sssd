@@ -1,24 +1,16 @@
 - name: Download sudo package (Only for OL 6)
   when: ansible_lsb.major_release|int == 6
-  command: wget http://www.sudo.ws/sudo/dist/packages/Oracle/6/sudo-1.8.3-1.el6.x86_64.rpm
+  command: wget -O /tmp/sudo-1.8.13 http://www.sudo.ws/sudo/dist/packages/Oracle/6/sudo-1.8.13-1.el6.x86_64.rpm
 
 - name: Download sudo package (Only for OL 5)
   when: ansible_lsb.major_release|int == 5
-  command: wget http://www.sudo.ws/sudo/dist/packages/Oracle/5/sudo-1.8.3-1.el5.x86_64.rpm
+  command: wget -O /tmp/sudo-1.8.13 http://www.sudo.ws/sudo/dist/packages/Oracle/5/sudo-1.8.13-1.el5.x86_64.rpm
 
 - name: Remove current sudo package
   command: yum remove sudo
 
-- name: Install new sudo package (Only for OL 6)
-  when: ansible_lsb.major_release|int == 6
-  command: rpm -ivh /home/jbauer/sudo-1.8.13-1.el6.x86_64.rpm
+- name: Install new sudo package 
+  command: rpm -ivh /tmp/sudo-1.8.13.rpm
 
-- name: Install new sudo package (Only for OL 5)
-  when: ansible_lsb.major_release|int == 5
-  command: rpm -ivh /home/jbauer/sudo-1.8.13-1.el5.x86_64.rpm
-
-- name: Copy original sudoers file to sudoer.d/ccsudo
-  command: cp /etc/sudoers.rpmsave /etc/sudoers.d/ccsudo
-
-
-
+- name: Copy template file to sudoer.d/CCSUDO
+  template: src=/etc/ansible/confFiles/CCSUDO.j2 dest=/etc/sudoers.d/CCSUDO

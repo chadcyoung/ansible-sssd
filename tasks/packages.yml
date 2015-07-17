@@ -6,4 +6,4 @@
         - sssd-tools
         - samba
         - oddjob
-        - oddjob-mkhomedir
+#        - oddjob-mkhomedir

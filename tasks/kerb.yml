@@ -8,8 +8,8 @@
 - name: Restorecon kerberos conf file
   command: sudo /sbin/restorecon /etc/krb5.conf
 
-- name: Create keytab
-  command: sudo net ads -U svc_sssd-auth keytab create
+#- name: Create keytab
+#  command: sudo net ads -U svc_sssd-auth keytab create
 
-- name: Join client to domain
-  command: sudo net ads join -U svc_sssd-auth  #Prod servers need specific OU's
+#- name: Join client to domain
+#  command: sudo net ads join -U svc_sssd-auth  #Prod servers need specific OU's

@@ -1,0 +1,29 @@
+# sudoers file.
+#
+# This file MUST be edited with the 'visudo' command as root.
+#
+# See the sudoers man page for the details on how to write a sudoers file.
+#
+
+# Host alias specification
+
+### Run As user aliases specification
+Runas_Alias ORACLE = oracle, orarep1p, oradis1, oemagent, oradisp, oraesmt1, oraops1, oracst1, oraccp2, oraops2, oraoem, oraesmq, applmgr, applqa2
+Runas_Alias APPWORX = appworx, appwrx1p, appwrx2p, appwrx1d, appwrx2d, appwrx, appwrx1q, appwrx2q
+
+# Cmnd alias specification
+
+# Defaults specification
+Defaults               syslog=auth, log_host
+
+### User privilege specification
+root    ALL=(ALL) ALL
+
+%hpsmh ALL=NOPASSWD:/etc/init.d/snmpd
+%hpsmh ALL=NOPASSWD:/usr/bin/snmptrap
+
+# Active Directory Groups
+%LinuxAdmins	ALL=(ALL) ALL
+%DBA		ALL=(ORACLE) ALL
+%AppWorks	ALL=(APWRX) ALL
+

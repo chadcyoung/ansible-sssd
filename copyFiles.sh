@@ -10,6 +10,7 @@
 					sudo cp /etc/hosts ~/ansibleconffiles/ && 
 					sudo cp /etc/nsswitch.conf ~/ansibleconffiles/ && 
 					sudo cp /etc/openldap/cacerts/root_cert.pem ~/ansibleconffiles/ && 
+					sudo cp /etc/sudoers.d/CCSUDO ~/ansibleconffiles/ && 
 					sudo cp /etc/pam.d/system-auth ~/ansibleconffiles/ &&
 					sudo chmod 777 ~/ansibleconffiles/sssd.conf'
 	scp -r dc2rh028tst.clubcorp.com:~/ansibleconffiles /etc/ansible/
